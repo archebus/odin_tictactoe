@@ -1,8 +1,137 @@
+/* Design Profile */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --player1: hsl(183, 100%, 35%);
+    --player2: hsl(33, 100%, 50%);
+    --white: hsl(0, 0%, 93%);
+    --black: hsl(216, 18%, 16%);
+    --grey: hsl(217, 10%, 25%);
+}
+
 *,
 *::before,
 *::after {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: "Montserrat", sans-serif;
+    color: var(--white);
+}
+
+body {
+    background-color: var(--white);
+    display: grid;
+    justify-content: center;
+    height: 100vh;
+}
+
+.wrapper {
+    display: grid;
+    justify-items: center;
+    align-items: end;
+}
+
+.main-box {
+    width: 500px;
+    border-radius: 25px;
+    padding: 0px 20px 50px 20px;
+    box-shadow: 10px 10px 8px var(--grey);
+    background-color: var(--grey);
+    display: inline-grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(3, 120px);
+    grid-template-rows: repeat(4, 120px);
+    gap: 20px;
+}
+
+.main-header {
+    margin: 20px 0px;
+    grid-column: 1 / 4;
+    justify-self: center;
+    align-self: center;
+    font-size: 3rem;
+}
+
+.ttbox {
+    background-color: var(--white);
+    width: 120px;
+    height: 120px;
+    justify-self: center;
+    align-self: center;
+    border-radius: 15px;
+    font-size: 90px;
+    color: red;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.ttbox:hover {
+    background-color: hsla(0, 0%, 93%, 0.8);
+}
+
+.scorebox {
+    margin-top: 40px;
+    flex-direction: column;
+    text-align: center;
+}
+
+.box10,
+.box11,
+.box12 {
+    border-radius: 15px;
+    font-size: 1rem;
+    color: white;
+    padding: 15px;
+    font-weight: 600;
+}
+
+.box10 {
+    background-color: var(--player1);
+}
+
+.box11 {
+    background-color: var(--black);
+}
+
+.box12 {
+    background-color: var(--player2);
+}
+
+.score-sub {
+    margin-top: 10px;
+    font-size: 50px;
+}
+
+.new-game {
+    padding: 5px 20px;
+    color: var(--black);
+    grid-column: 1/4;
+    margin-top: 40px;
+    font-size: 2rem;
+    border: none;
+    border-radius: 15px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.sub-text {
     font-family: 'Courier New', Courier, monospace;
+    color: var(--black);
+    align-self: start;
+    margin: 50px 0px;;
+}
+
+
+/* Dynamic JS Additions */
+.xstyle {
+    color: var(--player1);
+}
+
+.ostyle {
+    color: var(--player2);
 }
