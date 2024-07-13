@@ -1,5 +1,6 @@
 const boxes = document.querySelectorAll('.ttbox');
 const newGameBtn = document.getElementById('new-game');
+const resultOutput = document.getElementById('game-result');
 
 const gameboard = (function() {
     const updateBox = function(box, player) {
@@ -75,17 +76,15 @@ function Game(p1, p2) {
             gameboard.updateBox(box, activePlayer);
             const winner = checkWinner();
             if (winner) {
-                alert(`${activePlayer.name} Wins!`);
+                resultOutput.innerText = `${activePlayer.name} wins!`
                 disableAllBoxes();
                 (activePlayer === p1) ? gameState.p1Victory() : gameState.p2Victory();
                 updateDisplays();
-                resetGame();
             } else if (clicks > 8) {
-                alert(`DRAW!`);
+                resultOutput.innerText = `The game is a draw!`
                 disableAllBoxes();
                 gameState.drawResult();
                 updateDisplays();
-                resetGame();
             } else {
                 activePlayer = (activePlayer === p1) ? p2 : p1;
             }
@@ -100,7 +99,7 @@ function Game(p1, p2) {
 
     const disableAllBoxes = () => {
         boxes.forEach(box => {
-            box.removeEventListener("click", handleBoxClick); // Remove listener from all boxes
+            box.removeEventListener("click", box.handleClick);
         });
     };
 
@@ -111,15 +110,14 @@ function Game(p1, p2) {
         clicks = 0;
         activePlayer = p1;
         boxes.forEach(box => {
-            box.addEventListener("click", () => handleBoxClick(box)); // Re-add listener
+            box.addEventListener("click", box.handleClick);
         });
     }
 
     for (let box of boxes) {
-        box.addEventListener("click", () => handleBoxClick(box));
+        box.handleClick = () => handleBoxClick(box);
+        box.addEventListener("click", box.handleClick);
     }
-
-    updateDisplays();
 }
 
 function Player(name, symbol, style) {
